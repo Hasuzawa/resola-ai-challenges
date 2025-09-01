@@ -2,12 +2,12 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend for log audit system",
-	"type": "module",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "dev": "npx ts-node ./app.ts",
     "test": "jest",
-		"lint": "npx eslint ."
+    "lint": "npx eslint ."
   },
   "author": "Hasuzawa",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.27.1",
     "@eslint/js": "^9.34.0",
     "@types/jest": "^30.0.0",
     "@types/mocha": "^10.0.10",
