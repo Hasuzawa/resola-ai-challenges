@@ -1,13 +1,12 @@
-import { createRequire } from 'module'
-const require = createRequire(import.meta.url)
-
-const { createDefaultPreset } = require("ts-jest")
+import { createDefaultPreset } from "ts-jest"
 
 const tsJestTransformCfg = createDefaultPreset().transform;
 
 /** @type {import("jest").Config} **/
 export default {
   testEnvironment: "node",
+  preset: 'ts-jest',
+  transformIgnorePatterns: ['node_modules'],
   transform: {
     ...tsJestTransformCfg,
   },

@@ -1,2 +1,3 @@
-# Local dependency
+# Development
 **/node_modules
+backend/coverage
