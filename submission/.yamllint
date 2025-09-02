@@ -1,0 +1,10 @@
+---
+
+extends: default
+
+yaml-filess:
+  - "*.yaml"
+  - "*.yml"
+  - ".yamllint"
+
+locale: en_US.UTF-8
