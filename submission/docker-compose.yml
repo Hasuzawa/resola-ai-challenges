@@ -2,17 +2,35 @@
 version: '3'
 
 services:
-  postgres:
+  database:
     image: postgres:latest
-    container_name: postgres
+    container_name: database-postgres
     environment:
-      - POSTGRES_DB=develop
-      - POSTGRES_USER=dev
-      - POSTGRES_PASSWORD=dev
+      POSTGRES_DB: development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
-      - 5432:5432
-    volume:
+      - 8060:5432
+    volumes:
       - type: bind
         source: ./database/script
         target: /docker-entrypoint-initdb.d
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    depends_on:
+      - database
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@pgadmin.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    ports:
+      - 8080:80
+    volumes:
+      - type: bind
+        source: ./pgadmin/servers.json
+        target: /pgadmin4/servers.json
     restart: unless-stopped
